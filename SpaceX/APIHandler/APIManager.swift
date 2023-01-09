@@ -8,18 +8,15 @@
 import Foundation
 
 
-protocol APIProtocol{
-    
-    func finished(_ data: [SpaceXModel])
-    
+
+
+protocol APIManagerProtocol{
+    func getData(urlString: URLs, completion: @escaping(Data?) ->())
 }
 
-
-class APIManager{
+class APIManager: APIManagerProtocol{
     
-    var delegate: APIProtocol?
-    
-    func getData(urlString: URLs){
+    func getData(urlString: URLs, completion: @escaping(Data?) ->()){
         
         guard let url = URL(string: urlString.rawValue)else{
             return
@@ -36,37 +33,17 @@ class APIManager{
                 return
             }
             
-            guard let data = data,  let spaceXData = self.decodeJSONData(data: data) else{
+            guard let data = data else{
+                completion(nil)
                 return
             }
             
-
-            self.delegate?.finished(spaceXData)
+            completion(data)
         }
         
         
         task.resume()
 
     }
-    
-    
-    
-    private func decodeJSONData(data: Data) -> [SpaceXModel]?{
-        
-        let decoder = JSONDecoder()
-        
-        do{
-            let spaceXData = try decoder.decode([SpaceXModel].self, from: data)
-            return spaceXData
-        }catch{
-            print(error)
-            return nil
-        }
-
-        
-    }
-    
-    
-    
-    
 }
+

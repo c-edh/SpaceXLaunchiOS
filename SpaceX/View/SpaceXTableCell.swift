@@ -31,7 +31,7 @@ class SpaceXTableCell: UITableViewCell {
      
        
         
-        dateLabel.text = "Launch time: " + (launch.date_utc ?? K.cell.na)
+        dateLabel.text = "Launch time: " + (launch.date_utc?.dateFormatter(style: .full) ?? K.cell.na)
         
         dateLabel.adjustsFontSizeToFitWidth = true
 

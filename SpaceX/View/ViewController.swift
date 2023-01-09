@@ -7,21 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController,APIProtocol {
-    func finished(_ data: [SpaceXModel]) {
-        spaceXLaunches = data
+class ViewController: UIViewController,ViewModelProtocol {
 
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
     
-    
-    let apiManager = APIManager()
+    let viewModel = SpaceXViewModel()
 
     @IBOutlet weak var tableView: UITableView!
     
-    var spaceXLaunches: [SpaceXModel] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +25,22 @@ class ViewController: UIViewController,APIProtocol {
         
         tableView.register(UINib(nibName: K.spaceXTableCell, bundle: nil), forCellReuseIdentifier: K.spaceXTableCell)
         
-        apiManager.delegate = self
-        
-        apiManager.getData(urlString: .SpaceXLaunchs)
-        // Do any additional setup after loading the view.
+        viewModel.delegate = self
+        viewModel.getSpaceXData()
     }
-
+    
+    func updateTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spaceXLaunches.count
+        return viewModel.getRowCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,13 +48,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
 
-
-        cell.launch = spaceXLaunches[indexPath.row]
+        cell.launch = viewModel.getSpaceLaunch(for: indexPath.row)
         cell.setUpCell()
         
-        
         return cell
-        
     }
     
     

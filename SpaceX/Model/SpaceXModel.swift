@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct SpaceXModel:Decodable{
+struct SpaceXModel:Codable{
     
         let id: String?
         let name: String?
