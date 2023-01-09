@@ -11,11 +11,11 @@ import XCTest
 
 final class SpaceXTests: XCTestCase {
     
-    var viewModel: SpaceXViewModel?
+    var viewModel: SpaceXViewModelMock?
 
 
     override func setUpWithError() throws {
-        viewModel = SpaceXViewModel()
+        viewModel = SpaceXViewModelMock()
 
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,9 +28,11 @@ final class SpaceXTests: XCTestCase {
     func testGetRowCount(){
         let count = viewModel?.getRowCount()
         XCTAssertEqual(count, 0)
+        
+        viewModel?.getSpaceXData()
 
         let count2 = viewModel?.getRowCount()
-        XCTAssertEqual(count2, 1)
+        XCTAssertEqual(count2, 2)
         
     }
     
@@ -41,12 +43,37 @@ final class SpaceXTests: XCTestCase {
         let launch2 = viewModel?.getSpaceLaunch(for: 10)
         XCTAssertNil(launch2)
         
+        viewModel?.getSpaceXData()
         
-
         
         let launch3 = viewModel?.getSpaceLaunch(for: 0)
         XCTAssertNotNil(launch3)
 
+    }
+    
+    
+    func testDecodeJSON(){
+        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date_utc: "1/2/3", upcoming: true, success: true, rocket: "rocket")
+        
+        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date_utc: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
+        
+        let spaceArray: [SpaceXModel] = [spaceXModel1,spaceXModel2]
+ 
+        do {
+            
+            
+            let data = try JSONEncoder().encode(spaceArray)
+           let decodedData =  viewModel?.decodeJSONData(data: data)
+            
+            XCTAssertEqual(spaceArray.count, decodedData?.count)
+            
+            
+            
+        }catch{
+            XCTFail("Fail to encode in test")
+        }
+        
+        
     }
     
 

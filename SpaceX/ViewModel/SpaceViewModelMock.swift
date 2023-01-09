@@ -8,24 +8,29 @@
 import Foundation
 
 
-struct SpaceXViewModelMock: SpaceXViewModelProtocol{
+class SpaceXViewModelMock: SpaceXViewModelProtocol{
     
     
-    
+    var spaceArray: [SpaceXModel] = []
     
     func getSpaceXData() {
+        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date_utc: "1/2/3", upcoming: true, success: true, rocket: "rocket")
+        
+        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date_utc: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
+        
+         spaceArray = [spaceXModel1,spaceXModel2]
         
     }
     
     func getRowCount() -> Int {
-        //
-        
-        return 0
+        return spaceArray.count
     }
     
     func getSpaceLaunch(for index: Int) -> SpaceXModel? {
         //
-        
+        if !spaceArray.isEmpty && index >= 0 && index < spaceArray.count{
+            return spaceArray[index]
+        }
         return nil
     }
     
