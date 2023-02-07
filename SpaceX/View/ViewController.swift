@@ -7,23 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController,ViewModelProtocol {
+class ViewController: UIViewController, ViewModelProtocol {
 
-    
     let viewModel = SpaceXViewModel()
 
     @IBOutlet weak var tableView: UITableView!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = K.mainTitle
+        self.title = Constants.mainTitle
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: K.spaceXTableCell, bundle: nil), forCellReuseIdentifier: K.spaceXTableCell)
+        tableView.register(UINib(nibName: Constants.spaceXTableCell, bundle: nil), forCellReuseIdentifier: Constants.spaceXTableCell)
         
         viewModel.delegate = self
         viewModel.getSpaceXData()
@@ -35,16 +32,15 @@ class ViewController: UIViewController,ViewModelProtocol {
         }
     }
     
-
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource{
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getRowCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: K.spaceXTableCell) as? SpaceXTableCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.spaceXTableCell) as? SpaceXTableCell else {
             return UITableViewCell()
         }
 
@@ -54,8 +50,4 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    
-    
-    
 }
-

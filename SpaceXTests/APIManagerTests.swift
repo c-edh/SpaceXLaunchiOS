@@ -23,14 +23,11 @@ final class APIManagerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    
-    func testGetData(){
-        apiManager?.getData(urlString: .SpaceXLaunchs, completion: { data in
+    func testGetData() {
+        apiManager?.getData(urlString: .spaceXLaunches, completion: { data in
             XCTAssertNotNil(data)
         })
         
     }
-
-
 
 }

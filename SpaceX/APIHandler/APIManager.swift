@@ -7,18 +7,15 @@
 
 import Foundation
 
-
-
-
-protocol APIManagerProtocol{
-    func getData(urlString: URLs, completion: @escaping(Data?) ->())
+protocol APIManagerProtocol {
+    func getData(urlString: URLs, completion: @escaping(Data?) -> Void)
 }
 
-class APIManager: APIManagerProtocol{
+class APIManager: APIManagerProtocol {
     
-    func getData(urlString: URLs, completion: @escaping(Data?) ->()){
+    func getData(urlString: URLs, completion: @escaping(Data?) -> Void) {
         
-        guard let url = URL(string: urlString.rawValue)else{
+        guard let url = URL(string: urlString.rawValue)else {
             return
         }
         
@@ -26,14 +23,13 @@ class APIManager: APIManagerProtocol{
         
         let session = URLSession.shared
         
-        let task = session.dataTask(with: request){ data, response, error in
+        let task = session.dataTask(with: request) { data, _, error in
             
-            
-            if error != nil{
+            if error != nil {
                 return
             }
             
-            guard let data = data else{
+            guard let data = data else {
                 completion(nil)
                 return
             }
@@ -41,9 +37,7 @@ class APIManager: APIManagerProtocol{
             completion(data)
         }
         
-        
         task.resume()
 
     }
 }
-

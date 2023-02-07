@@ -7,18 +7,16 @@
 
 import Foundation
 
-
-class SpaceXViewModelMock: SpaceXViewModelProtocol{
-    
+class SpaceXViewModelMock: SpaceXViewModelProtocol {
     
     var spaceArray: [SpaceXModel] = []
     
     func getSpaceXData() {
-        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date_utc: "1/2/3", upcoming: true, success: true, rocket: "rocket")
+        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date: "1/2/3", upcoming: true, success: true, rocket: "rocket")
         
-        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date_utc: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
+        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
         
-         spaceArray = [spaceXModel1,spaceXModel2]
+         spaceArray = [spaceXModel1, spaceXModel2]
         
     }
     
@@ -28,7 +26,7 @@ class SpaceXViewModelMock: SpaceXViewModelProtocol{
     
     func getSpaceLaunch(for index: Int) -> SpaceXModel? {
         //
-        if !spaceArray.isEmpty && index >= 0 && index < spaceArray.count{
+        if !spaceArray.isEmpty && index >= 0 && index < spaceArray.count {
             return spaceArray[index]
         }
         return nil
@@ -36,34 +34,24 @@ class SpaceXViewModelMock: SpaceXViewModelProtocol{
     
     func decodeJSONData(data: Data) -> [SpaceXModel]? {
         
-        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date_utc: "1/2/3", upcoming: true, success: true, rocket: "rocket")
+        let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date: "1/2/3", upcoming: true, success: true, rocket: "rocket")
+        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
         
-        let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date_utc: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
-        
-        let spaceArray: [SpaceXModel] = [spaceXModel1,spaceXModel2]
+        let spaceArray: [SpaceXModel] = [spaceXModel1, spaceXModel2]
  
         do {
             let data = try JSONEncoder().encode(spaceArray)
             
             do {
                 return try JSONDecoder().decode([SpaceXModel].self, from: data)
-            } catch  {
+            } catch {
                 print("failed to decode \(error)")
             }
             
-            
-        } catch  {
+        } catch {
             print("failed to encode \(error)")
         }
         return nil
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

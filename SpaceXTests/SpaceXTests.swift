@@ -13,7 +13,6 @@ final class SpaceXTests: XCTestCase {
     
     var viewModel: SpaceXViewModelMock?
 
-
     override func setUpWithError() throws {
         viewModel = SpaceXViewModelMock()
 
@@ -25,7 +24,7 @@ final class SpaceXTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testGetRowCount(){
+    func testGetRowCount() {
         let count = viewModel?.getRowCount()
         XCTAssertEqual(count, 0)
         
@@ -36,7 +35,7 @@ final class SpaceXTests: XCTestCase {
         
     }
     
-    func testGetSpaceLaunch(){
+    func testGetSpaceLaunch() {
         let launch1 = viewModel?.getSpaceLaunch(for: -1)
         XCTAssertNil(launch1)
         
@@ -44,40 +43,26 @@ final class SpaceXTests: XCTestCase {
         XCTAssertNil(launch2)
         
         viewModel?.getSpaceXData()
-        
-        
+    
         let launch3 = viewModel?.getSpaceLaunch(for: 0)
         XCTAssertNotNil(launch3)
 
     }
     
-    
-    func testDecodeJSON(){
+    func testDecodeJSON() {
         let spaceXModel1 = SpaceXModel(id: "1", name: "C", details: "B", date_utc: "1/2/3", upcoming: true, success: true, rocket: "rocket")
         
         let spaceXModel2 = SpaceXModel(id: "2", name: "a", details: "c", date_utc: "1/2/4", upcoming: true, success: true, rocket: "rocket2")
         
-        let spaceArray: [SpaceXModel] = [spaceXModel1,spaceXModel2]
+        let spaceArray: [SpaceXModel] = [spaceXModel1, spaceXModel2]
  
         do {
-            
-            
             let data = try JSONEncoder().encode(spaceArray)
-           let decodedData =  viewModel?.decodeJSONData(data: data)
-            
+            let decodedData =  viewModel?.decodeJSONData(data: data)
             XCTAssertEqual(spaceArray.count, decodedData?.count)
-            
-            
-            
-        }catch{
+        } catch {
             XCTFail("Fail to encode in test")
         }
-        
-        
     }
     
-
-    
-    
-
 }

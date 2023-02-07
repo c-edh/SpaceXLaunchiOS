@@ -7,18 +7,16 @@
 
 import Foundation
 
-
-class K{
+class Constants {
     
     static let spaceXTableCell = "SpaceXTableCell"
     
     static let mainTitle = "SpaceX Launch Schedules"
     
-    struct cell{
+    struct SpaceXCell {
         static let success = "Success"
         static let fail = "Failed"
-        static let na = "N/A"
-        
+        static let notAvailable = "N/A"
     }
     
 }

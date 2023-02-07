@@ -23,40 +23,34 @@ class SpaceXTableCell: UITableViewCell {
         
     }
     
-    func setUpCell(){
-        guard let launch = launch else{
+    func setUpCell() {
+        guard let launch = launch else {
             return
         }
-        titleLabel.text = launch.name ?? K.cell.na
+        titleLabel.text = launch.name ?? Constants.SpaceXCell.notAvailable
      
-       
-        
-        dateLabel.text = "Launch time: " + (launch.date_utc?.dateFormatter(style: .full) ?? K.cell.na)
+        dateLabel.text = "Launch time: " + (launch.date?.dateFormatter(style: .full) ?? Constants.SpaceXCell.notAvailable)
         
         dateLabel.adjustsFontSizeToFitWidth = true
 
-
-        descriptionLabel.text = launch.details ?? K.cell.na
+        descriptionLabel.text = launch.details ?? Constants.SpaceXCell.notAvailable
         descriptionLabel.numberOfLines = 0
         
-        if let success = launch.success{
-            if success{
-                successLabel.text = K.cell.success
+        if let success = launch.success {
+            if success {
+                successLabel.text = Constants.SpaceXCell.success
                 successLabel.textColor = .green
-            }else{
-                successLabel.text = K.cell.fail
+            } else {
+                successLabel.text = Constants.SpaceXCell.fail
                 successLabel.textColor = .red
             }
-        }else{
+        } else {
             successLabel.textColor = .label
-            successLabel.text = K.cell.na
+            successLabel.text = Constants.SpaceXCell.notAvailable
         }
-        
         
     }
     
-
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

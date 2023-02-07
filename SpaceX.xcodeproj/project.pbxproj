@@ -15,7 +15,7 @@
 		F472A9322968C9D00019DDC3 /* SpaceViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472A9312968C9D00019DDC3 /* SpaceViewModelMock.swift */; };
 		F49DFA1B295C8EB60070FD56 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49DFA1A295C8EB60070FD56 /* APIManager.swift */; };
 		F49DFA1D295C9F680070FD56 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49DFA1C295C9F680070FD56 /* URLs.swift */; };
-		F49DFA1F295C9FED0070FD56 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49DFA1E295C9FED0070FD56 /* K.swift */; };
+		F49DFA1F295C9FED0070FD56 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49DFA1E295C9FED0070FD56 /* Constants.swift */; };
 		F4FD98EE295C89E500832340 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FD98ED295C89E500832340 /* AppDelegate.swift */; };
 		F4FD98F0295C89E500832340 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FD98EF295C89E500832340 /* SceneDelegate.swift */; };
 		F4FD98F2295C89E500832340 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FD98F1295C89E500832340 /* ViewController.swift */; };
@@ -47,7 +47,7 @@
 		F472A9312968C9D00019DDC3 /* SpaceViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceViewModelMock.swift; sourceTree = "<group>"; };
 		F49DFA1A295C8EB60070FD56 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F49DFA1C295C9F680070FD56 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
-		F49DFA1E295C9FED0070FD56 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		F49DFA1E295C9FED0070FD56 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4FD98EA295C89E500832340 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FD98ED295C89E500832340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4FD98EF295C89E500832340 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			children = (
 				F4FD98ED295C89E500832340 /* AppDelegate.swift */,
 				F4FD98EF295C89E500832340 /* SceneDelegate.swift */,
-				F49DFA1E295C9FED0070FD56 /* K.swift */,
+				F49DFA1E295C9FED0070FD56 /* Constants.swift */,
 				F472A92A29688A160019DDC3 /* Extension.swift */,
 				F49DFA20295CB0FB0070FD56 /* APIHandler */,
 				F4FD9908295C8DAC00832340 /* Model */,
@@ -190,6 +190,7 @@
 				F4FD98E6295C89E500832340 /* Sources */,
 				F4FD98E7295C89E500832340 /* Frameworks */,
 				F4FD98E8295C89E500832340 /* Resources */,
+				F44099FB2970549A009ED410 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -259,6 +260,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F44099FB2970549A009ED410 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F472A91D296883C40019DDC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -281,7 +303,7 @@
 				F49DFA1D295C9F680070FD56 /* URLs.swift in Sources */,
 				F472A92B29688A160019DDC3 /* Extension.swift in Sources */,
 				F4FD9905295C8BCF00832340 /* SpaceXTableCell.swift in Sources */,
-				F49DFA1F295C9FED0070FD56 /* K.swift in Sources */,
+				F49DFA1F295C9FED0070FD56 /* Constants.swift in Sources */,
 				F472A9322968C9D00019DDC3 /* SpaceViewModelMock.swift in Sources */,
 				F4FD98EE295C89E500832340 /* AppDelegate.swift in Sources */,
 				F4FD98F0295C89E500832340 /* SceneDelegate.swift in Sources */,

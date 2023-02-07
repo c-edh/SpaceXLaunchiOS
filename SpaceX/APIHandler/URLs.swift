@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-enum URLs: String{
-    
-    case SpaceXLaunchs = "https://api.spacexdata.com/v5/launches"
-    
+enum URLs: String {
+    case spaceXLaunches = "https://api.spacexdata.com/v5/launches"
 }
