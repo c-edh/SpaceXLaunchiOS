@@ -11,10 +11,13 @@ extension String {
     
         func dateFormatter(style: DateFormatter.Style) -> String? {
              let formatter = DateFormatter()
-             formatter.dateFormat = "yyyy-MM-dd"
+             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
              formatter.timeZone = .current
-             formatter.dateStyle = style
-             return formatter.string(from: Date())
+             if let date = formatter.date(from: self) {
+                 formatter.dateFormat = "MMMM dd, yyyy"
+                 return formatter.string(from: date)
+             }
+             return nil
         
     }
     
